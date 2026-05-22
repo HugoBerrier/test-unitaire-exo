@@ -1,6 +1,6 @@
 package com.example;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RechercheVille {
@@ -12,7 +12,20 @@ public class RechercheVille {
     }
 
     public List<String> rechercher(String mot) {
-        // Squelette TDD : implementation a venir dans le prochain commit
-        return Collections.emptyList();
+        if ("*".equals(mot)) {
+            return new ArrayList<>(villes);
+        }
+        if (mot == null || mot.length() < 2) {
+            throw new NotFoundException();
+        }
+
+        String search = mot.toLowerCase();
+        List<String> result = new ArrayList<>();
+        for (String ville : villes) {
+            if (ville.toLowerCase().contains(search)) {
+                result.add(ville);
+            }
+        }
+        return result;
     }
 }
