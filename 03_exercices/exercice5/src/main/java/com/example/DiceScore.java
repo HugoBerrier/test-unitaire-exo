@@ -9,7 +9,15 @@ public class DiceScore {
     }
 
     public int getScore() {
-        // Squelette TDD : implementation a venir dans le prochain commit
-        return 0;
+        int scoreFirst = de.getRoll();
+        int scoreSecond = de.getRoll();
+
+        if (scoreFirst == scoreSecond) {
+            if (scoreFirst == 6) {
+                return 30;
+            }
+            return scoreFirst * 2 + 10;
+        }
+        return scoreFirst < scoreSecond ? scoreSecond : scoreFirst;
     }
 }
